@@ -8,6 +8,7 @@ claim-specific evidence.
 from __future__ import annotations
 
 import json
+import os
 import platform
 import sys
 import time
@@ -22,6 +23,23 @@ ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = ROOT / "outputs"
 GAME = M.make_game(a=1.0, b=1.0, c=3.0)
 EPS = 0.05
+
+
+def cpu_allocation() -> dict[str, object]:
+    affinity = len(os.sched_getaffinity(0)) if hasattr(os, "sched_getaffinity") else None
+    cgroup_cpu_max = None
+    cpu_max = Path("/sys/fs/cgroup/cpu.max")
+    if cpu_max.exists():
+        cgroup_cpu_max = cpu_max.read_text().strip()
+    return {
+        "estimated_required_cores": 2,
+        "selected_backend": "hf",
+        "selected_flavor": "cpu-upgrade",
+        "os_cpu_count": os.cpu_count(),
+        "affinity_cpu_count": affinity,
+        "cgroup_cpu_max": cgroup_cpu_max,
+        "runtime_scope": "uv environment materialization plus serial NumPy regressions",
+    }
 
 
 def max_stable_h(beta: float, rho: float = 0.9, steps: int = 1500) -> float:
@@ -111,6 +129,7 @@ def main() -> int:
             "platform": platform.platform(),
             "numpy": np.__version__,
         },
+        "cpu": cpu_allocation(),
         "runtime_seconds": time.perf_counter() - started,
     }
     OUTPUT.mkdir(exist_ok=True)
