@@ -18,6 +18,7 @@ from pathlib import Path
 import numpy as np
 
 import core as M
+import claim4_flatness
 import claim6_local_error
 
 
@@ -106,11 +107,45 @@ def accepted_regressions() -> list[dict[str, object]]:
 def main() -> int:
     started = time.perf_counter()
     claims = accepted_regressions()
-    claims.extend(
+    claim4 = claim4_flatness.run(OUTPUT)
+    claim4_checker_path = OUTPUT / "claim4_checker.json"
+    claim4_checker = subprocess.run(
         [
-            {"claim": 4, "status": "BLOCKED", "reason": "Historical baseline varies beta but not rho."},
-            {"claim": 5, "status": "BLOCKED", "reason": "Historical baseline contains no GAN training evidence."},
-        ]
+            sys.executable,
+            str(Path(__file__).with_name("check_claim4.py")),
+            str(OUTPUT / "claim4_flatness.csv"),
+            str(claim4_checker_path),
+        ],
+        check=False,
+    )
+    claim4_checker_payload = (
+        json.loads(claim4_checker_path.read_text())
+        if claim4_checker_path.exists()
+        else {"passed": False}
+    )
+    claim4_status = (
+        "VERIFIED"
+        if claim4_checker.returncode == 0 and claim4_checker_payload["passed"]
+        else "FAILED"
+    )
+    claim4["verdict"] = claim4_status
+    claims.append(
+        {
+            "claim": 4,
+            "status": claim4_status,
+            "metric": claim4["metric"],
+            "interaction_dominated_contract_passed": claim4_checker_payload.get(
+                "interaction_dominated_contract_passed", False
+            ),
+            "interaction_free_negative_control_failed_reversed_contract": (
+                claim4_checker_payload.get(
+                    "interaction_free_negative_control_failed_reversed_contract", False
+                )
+            ),
+        }
+    )
+    claims.append(
+        {"claim": 5, "status": "BLOCKED", "reason": "No faithful GAN training evidence yet."}
     )
     claim6 = claim6_local_error.run(OUTPUT)
     checker_path = OUTPUT / "claim6_checker.json"
@@ -158,7 +193,9 @@ def main() -> int:
     print(json.dumps(payload, indent=2))
     print("=== CLAIM 6 RAW LOCAL-ERROR EVIDENCE ===")
     print(json.dumps(claim6, indent=2))
-    if not accepted_pass or claim6_status != "VERIFIED":
+    print("=== CLAIM 4 RAW FLATNESS EVIDENCE ===")
+    print(json.dumps(claim4, indent=2))
+    if not accepted_pass or claim4_status != "VERIFIED" or claim6_status != "VERIFIED":
         print("ERROR: cumulative claim verification failed", file=sys.stderr)
         return 1
     return 0

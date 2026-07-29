@@ -1,0 +1,20 @@
+{
+  "claim": 4,
+  "verdict_target": "VERIFIED",
+  "paper_statement": "In interaction-dominated zero-sum games, smaller beta and larger rho guide Adam-DA trajectories to regions with lower ||grad_x f||_1 + ||grad_y f||_1.",
+  "domain": {
+    "game": "f(x,y)=x^2/2+3xy-y^2/2, cross/self Hessian ratio 3 and Jacobian eigenvalues -1 plus or minus 3i",
+    "algorithm": "simultaneous bias-corrected Adam-DA",
+    "metric": "paper-defined cumulative AvgS",
+    "beta_sweep": "[-0.3,0,0.3,0.6,0.9] at rho=0.9",
+    "rho_sweep": "[0.5,0.7,0.9,0.95,0.99] at beta=0",
+    "replication": "eight paired deterministic initial conditions and horizons 3000 and 10000"
+  },
+  "machine_check": {
+    "beta": "mean AvgS is strictly increasing in beta at both accepted horizons",
+    "rho": "mean AvgS is strictly decreasing in rho at both accepted horizons",
+    "uncertainty": "all eight paired extreme contrasts are positive and the fixed-seed 99% bootstrap lower endpoint is positive",
+    "negative_control": "the same reversed-momentum contract fails in at least one axis/horizon when cross interaction is removed"
+  },
+  "non_circularity": "The parameter grids, horizons, starts, strict monotonic rule, and 99% paired-bootstrap rule are fixed before execution. Horizons are not derived from the expected effect or theorem formula."
+}
