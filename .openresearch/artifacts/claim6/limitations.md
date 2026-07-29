@@ -2,7 +2,7 @@
 
 - This is a direct numerical order check, not a formal proof certificate.
 - It covers one analytic bounded-derivative loss, four initial points, one
-  `(beta, rho, epsilon)` triple, and seven step sizes.
+  `(beta, rho, epsilon)` triple, and eight step sizes.
 - RK4 with 128 substeps is used as a high-accuracy reference integrator;
   integration error is designed to be negligible relative to the measured
   `h^3` residual.

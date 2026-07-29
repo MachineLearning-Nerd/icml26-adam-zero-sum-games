@@ -40,17 +40,26 @@ def main(csv_path: Path, output_path: Path) -> int:
             }
         )
 
+    fixed_physical_time = len(
+        {
+            float(row["physical_warmup"])
+            for rows in groups.values()
+            for row in rows
+        }
+    ) == 1
     burn_in_valid = all(
-        int(row["burn_in_steps"]) > 0
+        int(row["burn_in_steps"]) > float(row["paper_burn_in_threshold"])
         for rows in groups.values()
         for row in rows
     )
-    passed = burn_in_valid and all(
+    passed = fixed_physical_time and burn_in_valid and all(
         item["corrected_is_h3"] and item["control_rejected_as_h3"] and item["control_is_h2"]
         for item in checks
     )
     result = {
-        "checker": "result-only independent log-log regression",
+        "checker": "result-only independent log-log regression with theorem burn-in audit",
+        "fixed_physical_time": fixed_physical_time,
+        "all_burn_in_counts_exceed_theorem_threshold": burn_in_valid,
         "checks": checks,
         "negative_control": "SignGDA-flow without the O(h) modified-equation correction",
         "negative_control_failed_h3_contract": all(item["control_rejected_as_h3"] for item in checks),

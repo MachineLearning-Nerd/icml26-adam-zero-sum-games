@@ -13,7 +13,8 @@
     "corrected_ode_observed_order": "[2.70, 3.30] independently for every initial point",
     "signgda_negative_control_order": "[1.70, 2.30]",
     "signgda_rejected_as_h3": "observed order < 2.40",
-    "burn_in": "50 fixed steps, strictly exceeding the paper threshold for every h"
+    "fixed_horizon": "all histories reach exactly t=0.2 before the local comparison",
+    "burn_in": "per-h step count is independently checked to strictly exceed the paper threshold"
   },
-  "non_circularity": "The seven geometric h values, four initial points, and fixed 50-step burn-in were selected independently of any observed errors. No sample count or slope is copied from the formula under test."
+  "non_circularity": "The eight h values are selected because each divides the independently fixed physical time t=0.2 exactly. The four initial points and acceptance interval are unchanged from the frozen first route. The theorem formula is used only as a post hoc eligibility audit, not to choose a sample count, slope, or tolerance."
 }

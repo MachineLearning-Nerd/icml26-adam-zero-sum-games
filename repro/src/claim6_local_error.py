@@ -14,8 +14,8 @@ ALPHA = 0.2
 BETA = 0.2
 RHO = 0.5
 EPS = 0.1
-BURN_IN_STEPS = 50
-H_VALUES = np.array([0.02, 0.014, 0.01, 0.007, 0.005, 0.0035, 0.0025])
+PHYSICAL_WARMUP = 0.2
+H_VALUES = np.array([0.0125, 0.01, 0.008, 0.00625, 0.005, 0.004, 0.003125, 0.0025])
 INITIAL_POINTS = ((0.40, 0.30), (-0.35, 0.25), (0.30, -0.40), (-0.25, -0.35))
 
 
@@ -57,12 +57,16 @@ def adam_step(
     return updated, np.array([mx, my, vx, vy])
 
 
-def warm_state(initial: tuple[float, float], h: float) -> tuple[np.ndarray, np.ndarray]:
+def warm_state(initial: tuple[float, float], h: float) -> tuple[np.ndarray, np.ndarray, int]:
+    """Reach the same physical time for every discretization."""
+    burn_in_steps = round(PHYSICAL_WARMUP / h)
+    if not math.isclose(burn_in_steps * h, PHYSICAL_WARMUP, rel_tol=0.0, abs_tol=1e-12):
+        raise ValueError(f"h={h} does not divide the fixed physical warm-up")
     z = np.asarray(initial, dtype=float)
     moments = np.zeros(4)
-    for step_index in range(1, BURN_IN_STEPS + 1):
+    for step_index in range(1, burn_in_steps + 1):
         z, moments = adam_step(z, moments, step_index, h)
-    return z, moments
+    return z, moments, burn_in_steps
 
 
 def continuous_vector(z: np.ndarray, h: float, corrected: bool) -> np.ndarray:
@@ -109,17 +113,20 @@ def run(output_dir: Path) -> dict[str, object]:
     rows: list[dict[str, object]] = []
     per_initial: list[dict[str, object]] = []
 
-    max_threshold = 0.0
-    for h in H_VALUES:
-        threshold = max(2.0 * math.log(h) / math.log(abs(BETA)), 2.0 * math.log(h) / math.log(RHO))
-        max_threshold = max(max_threshold, threshold)
+    thresholds = {
+        float(h): max(
+            2.0 * math.log(h) / math.log(abs(BETA)),
+            2.0 * math.log(h) / math.log(RHO),
+        )
+        for h in H_VALUES
+    }
 
     for initial_id, initial in enumerate(INITIAL_POINTS):
         corrected_errors: list[float] = []
         control_errors: list[float] = []
         for h in H_VALUES:
-            z, moments = warm_state(initial, float(h))
-            discrete_next, _ = adam_step(z, moments, BURN_IN_STEPS + 1, float(h))
+            z, moments, burn_in_steps = warm_state(initial, float(h))
+            discrete_next, _ = adam_step(z, moments, burn_in_steps + 1, float(h))
             corrected_next = integrate_rk4(z, float(h), corrected=True)
             control_next = integrate_rk4(z, float(h), corrected=False)
             corrected_error = float(np.linalg.norm(discrete_next - corrected_next))
@@ -134,7 +141,9 @@ def run(output_dir: Path) -> dict[str, object]:
                     "x0": initial[0],
                     "y0": initial[1],
                     "h": float(h),
-                    "burn_in_steps": BURN_IN_STEPS,
+                    "physical_warmup": PHYSICAL_WARMUP,
+                    "burn_in_steps": burn_in_steps,
+                    "paper_burn_in_threshold": thresholds[float(h)],
                     "corrected_error": corrected_error,
                     "signgda_control_error": control_error,
                     "corrected_error_over_h3": corrected_error / float(h) ** 3,
@@ -171,8 +180,13 @@ def run(output_dir: Path) -> dict[str, object]:
             "beta": BETA,
             "rho": RHO,
             "epsilon": EPS,
-            "burn_in_steps": BURN_IN_STEPS,
-            "paper_max_burn_in_threshold": max_threshold,
+            "physical_warmup": PHYSICAL_WARMUP,
+            "burn_in_steps_by_h": {
+                str(float(h)): round(PHYSICAL_WARMUP / float(h)) for h in H_VALUES
+            },
+            "paper_burn_in_threshold_by_h": {
+                str(h): threshold for h, threshold in thresholds.items()
+            },
             "h_values": H_VALUES.tolist(),
             "initial_points": [list(point) for point in INITIAL_POINTS],
             "rk4_substeps": 128,
