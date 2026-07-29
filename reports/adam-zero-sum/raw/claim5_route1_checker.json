@@ -1,0 +1,15 @@
+{
+  "checker": "result-only source-completeness checker",
+  "reported_settings_recovered": true,
+  "critical_missing_fields": [
+    "exact_cnn_definition",
+    "exact_resnet_definition",
+    "executable_author_code",
+    "inception_implementation_and_sample_count",
+    "main_experiment_training_horizon",
+    "raw_gradient_norm_timeseries",
+    "training_seeds"
+  ],
+  "blocked_instead_of_false_pass": true,
+  "passed": true
+}

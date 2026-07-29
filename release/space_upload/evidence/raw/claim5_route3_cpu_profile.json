@@ -1,0 +1,111 @@
+{
+  "claim": 5,
+  "route": 3,
+  "route_name": "full-shape CPU feasibility calibration",
+  "profile_scope": "Synthetic images; full reported resolutions and batch size; CNN and ResNet; WGAN-GP backward; parameter-gradient L1 measurement.",
+  "not_claim_evidence": true,
+  "assumed_training_design": {
+    "joint_critic_generator_ratio": "1:1 lower-cost calibration",
+    "gradient_penalty": 10.0,
+    "latent_dim": 128,
+    "base_channels": 16,
+    "optimizer_betas": [
+      0.0,
+      0.9
+    ],
+    "learning_rate": 0.0002,
+    "published_plot_horizon": 16000,
+    "configuration_count": 44
+  },
+  "cpu": {
+    "estimated_required_cores": 8,
+    "selected_backend": "hf",
+    "selected_flavor": "cpu-upgrade",
+    "cgroup_cpu_max": "800000 100000",
+    "actual_quota_cores": 8,
+    "torch_threads": 8
+  },
+  "profiles": [
+    {
+      "architecture": "CNN",
+      "dataset_shape": "CIFAR-10",
+      "resolution": 32,
+      "batch_size": 64,
+      "base_channels": 16,
+      "forward_only_seconds": 0.07788968334595363,
+      "joint_wgan_gp_seconds": 0.10454877850133926,
+      "measured_step_seconds": [
+        0.11285833502188325,
+        0.09623922198079526
+      ],
+      "parameter_gradient_l1": [
+        154.72997283935547,
+        162.27595901489258
+      ],
+      "single_configuration_16000_step_hours": 0.46466123778373003
+    },
+    {
+      "architecture": "CNN",
+      "dataset_shape": "STL-10",
+      "resolution": 64,
+      "batch_size": 64,
+      "base_channels": 16,
+      "forward_only_seconds": 0.07024336031948526,
+      "joint_wgan_gp_seconds": 0.34000385203398764,
+      "measured_step_seconds": [
+        0.36673157406039536,
+        0.3132761300075799
+      ],
+      "parameter_gradient_l1": [
+        75.50020599365234,
+        87.63142395019531
+      ],
+      "single_configuration_16000_step_hours": 1.5111282312621672
+    },
+    {
+      "architecture": "ResNet",
+      "dataset_shape": "CIFAR-10",
+      "resolution": 32,
+      "batch_size": 64,
+      "base_channels": 16,
+      "forward_only_seconds": 0.025880898348987103,
+      "joint_wgan_gp_seconds": 0.29225909849628806,
+      "measured_step_seconds": [
+        0.2747913720086217,
+        0.30972682498395443
+      ],
+      "parameter_gradient_l1": [
+        135.53379821777344,
+        153.59725189208984
+      ],
+      "single_configuration_16000_step_hours": 1.2989293266501691
+    },
+    {
+      "architecture": "ResNet",
+      "dataset_shape": "STL-10",
+      "resolution": 64,
+      "batch_size": 64,
+      "base_channels": 16,
+      "forward_only_seconds": 0.17343296630618474,
+      "joint_wgan_gp_seconds": 1.56298150238581,
+      "measured_step_seconds": [
+        1.6197347398847342,
+        1.5062282648868859
+      ],
+      "parameter_gradient_l1": [
+        90.34120392799377,
+        105.48876714706421
+      ],
+      "single_configuration_16000_step_hours": 6.946584455048044
+    }
+  ],
+  "projected_hours_one_seed_44_configs": 112.43433575818521,
+  "projected_hours_three_seeds_44_configs": 337.3030072745556,
+  "projection_excludes": [
+    "dataset input pipeline",
+    "Inception Score generation and evaluation",
+    "additional critic updates",
+    "uncertainty from the undisclosed architecture"
+  ],
+  "verdict": "BLOCKED"
+}

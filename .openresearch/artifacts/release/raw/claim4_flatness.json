@@ -1,0 +1,84 @@
+{
+  "claim": 4,
+  "paper_anchor": "Section 5 thesis and AvgS definition",
+  "metric": "cumulative average of ||grad_x f||_1 + ||grad_y f||_1",
+  "parameters": {
+    "beta_values": [
+      -0.3,
+      0.0,
+      0.3,
+      0.6,
+      0.9
+    ],
+    "rho_values": [
+      0.3,
+      0.5,
+      0.7,
+      0.9
+    ],
+    "horizons": [
+      1000,
+      3000,
+      10000
+    ],
+    "starts": [
+      [
+        0.5,
+        0.5
+      ],
+      [
+        -0.5,
+        0.5
+      ],
+      [
+        0.5,
+        -0.5
+      ],
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.8,
+        0.2
+      ],
+      [
+        -0.8,
+        0.2
+      ],
+      [
+        0.2,
+        -0.8
+      ],
+      [
+        -0.2,
+        -0.8
+      ]
+    ],
+    "beta_sweep": {
+      "fixed_rho": 0.9,
+      "h": 0.0005
+    },
+    "rho_sweep": {
+      "fixed_beta": 0.0,
+      "h": 0.01
+    },
+    "epsilon": 0.05
+  },
+  "assumption_audit": {
+    "interaction_game_cross_to_self_hessian_ratio": 3.0,
+    "interaction_game_jacobian_eigenvalues": [
+      [
+        -1.0,
+        2.9999999999999996
+      ],
+      [
+        -1.0,
+        -2.9999999999999996
+      ]
+    ],
+    "negative_control_cross_to_self_hessian_ratio": 0.0
+  },
+  "row_count": 432,
+  "verdict": "PENDING_INDEPENDENT_CHECK"
+}

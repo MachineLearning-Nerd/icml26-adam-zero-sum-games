@@ -1,0 +1,220 @@
+{
+  "checker": "result-only means, paired contrasts, and fixed-seed bootstrap",
+  "accepted_horizons": [
+    3000,
+    10000
+  ],
+  "summaries": [
+    {
+      "game": "interaction_dominated",
+      "axis": "beta",
+      "horizon": 3000,
+      "parameters": [
+        -0.3,
+        0.0,
+        0.3,
+        0.6,
+        0.9
+      ],
+      "means": [
+        1.7565015965486375,
+        1.7582082379841508,
+        1.7613787578694318,
+        1.7693138165922688,
+        1.8251456292087282
+      ],
+      "expected_direction": "increasing",
+      "strict_expected_order": true,
+      "paired_extreme_difference_mean": 0.06864403266009073,
+      "paired_extreme_difference_99pct_ci": [
+        0.0629847512832879,
+        0.07320143474305504
+      ],
+      "all_paired_extreme_differences_positive": true
+    },
+    {
+      "game": "interaction_dominated",
+      "axis": "beta",
+      "horizon": 10000,
+      "parameters": [
+        -0.3,
+        0.0,
+        0.3,
+        0.6,
+        0.9
+      ],
+      "means": [
+        0.5598974171942623,
+        0.5607879154429294,
+        0.5624544190370783,
+        0.5666960746539038,
+        0.5997927391058924
+      ],
+      "expected_direction": "increasing",
+      "strict_expected_order": true,
+      "paired_extreme_difference_mean": 0.03989532191162999,
+      "paired_extreme_difference_99pct_ci": [
+        0.03652685993754571,
+        0.043147881821855166
+      ],
+      "all_paired_extreme_differences_positive": true
+    },
+    {
+      "game": "interaction_dominated",
+      "axis": "rho",
+      "horizon": 3000,
+      "parameters": [
+        0.3,
+        0.5,
+        0.7,
+        0.9
+      ],
+      "means": [
+        0.09620485481559868,
+        0.0921845549406054,
+        0.08505140150886373,
+        0.07458019795319343
+      ],
+      "expected_direction": "decreasing",
+      "strict_expected_order": true,
+      "paired_extreme_difference_mean": 0.02162465686240525,
+      "paired_extreme_difference_99pct_ci": [
+        0.01968738340728681,
+        0.024334694098644062
+      ],
+      "all_paired_extreme_differences_positive": true
+    },
+    {
+      "game": "interaction_dominated",
+      "axis": "rho",
+      "horizon": 10000,
+      "parameters": [
+        0.3,
+        0.5,
+        0.7,
+        0.9
+      ],
+      "means": [
+        0.0288614564446796,
+        0.02765536648218162,
+        0.025515420452659122,
+        0.022374059385958024
+      ],
+      "expected_direction": "decreasing",
+      "strict_expected_order": true,
+      "paired_extreme_difference_mean": 0.006487397058721574,
+      "paired_extreme_difference_99pct_ci": [
+        0.005906215022186042,
+        0.007339582818880988
+      ],
+      "all_paired_extreme_differences_positive": true
+    },
+    {
+      "game": "interaction_free_control",
+      "axis": "beta",
+      "horizon": 3000,
+      "parameters": [
+        -0.3,
+        0.0,
+        0.3,
+        0.6,
+        0.9
+      ],
+      "means": [
+        0.2616733655844114,
+        0.26159916269756633,
+        0.26146143989033876,
+        0.2611174004229464,
+        0.25871905229377845
+      ],
+      "expected_direction": "increasing",
+      "strict_expected_order": false,
+      "paired_extreme_difference_mean": -0.0029543132906329622,
+      "paired_extreme_difference_99pct_ci": [
+        -0.0029742819169073197,
+        -0.0029343446643586048
+      ],
+      "all_paired_extreme_differences_positive": false
+    },
+    {
+      "game": "interaction_free_control",
+      "axis": "beta",
+      "horizon": 10000,
+      "parameters": [
+        -0.3,
+        0.0,
+        0.3,
+        0.6,
+        0.9
+      ],
+      "means": [
+        0.07872014779063055,
+        0.07869719245252405,
+        0.07865458878471099,
+        0.0785481761648221,
+        0.07780691591070193
+      ],
+      "expected_direction": "increasing",
+      "strict_expected_order": false,
+      "paired_extreme_difference_mean": -0.0009132318799286165,
+      "paired_extreme_difference_99pct_ci": [
+        -0.0009135878543550628,
+        -0.0009128759055021703
+      ],
+      "all_paired_extreme_differences_positive": false
+    },
+    {
+      "game": "interaction_free_control",
+      "axis": "rho",
+      "horizon": 3000,
+      "parameters": [
+        0.3,
+        0.5,
+        0.7,
+        0.9
+      ],
+      "means": [
+        0.01287772106622715,
+        0.012970683477982213,
+        0.013173904255635253,
+        0.013950522658528013
+      ],
+      "expected_direction": "decreasing",
+      "strict_expected_order": false,
+      "paired_extreme_difference_mean": -0.0010728015923008628,
+      "paired_extreme_difference_99pct_ci": [
+        -0.0011623923325120313,
+        -0.0009832108520896944
+      ],
+      "all_paired_extreme_differences_positive": false
+    },
+    {
+      "game": "interaction_free_control",
+      "axis": "rho",
+      "horizon": 10000,
+      "parameters": [
+        0.3,
+        0.5,
+        0.7,
+        0.9
+      ],
+      "means": [
+        0.003863316319868145,
+        0.003891205043394664,
+        0.003952171276690576,
+        0.004185156797558404
+      ],
+      "expected_direction": "decreasing",
+      "strict_expected_order": false,
+      "paired_extreme_difference_mean": -0.000321840477690259,
+      "paired_extreme_difference_99pct_ci": [
+        -0.0003487176997536093,
+        -0.00029496325562690867
+      ],
+      "all_paired_extreme_differences_positive": false
+    }
+  ],
+  "interaction_dominated_contract_passed": true,
+  "interaction_free_negative_control_failed_reversed_contract": true,
+  "passed": true
+}

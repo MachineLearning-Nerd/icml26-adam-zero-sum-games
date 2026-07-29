@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420" role="img" aria-labelledby="title desc">
+  <title id="title">Four Claim 5 routes all end blocked</title>
+  <desc id="desc">Source audit, table audit, CPU calibration, and mandatory falsification route identify concrete blockers without claiming GAN reproduction.</desc>
+  <rect width="900" height="420" fill="#fbfbfd"/>
+  <text x="48" y="44" font-family="sans-serif" font-size="24" font-weight="700" fill="#172033">Claim 5 remains BLOCKED after four materially different routes</text>
+  <g font-family="sans-serif">
+    <g><rect x="45" y="95" width="190" height="190" rx="12" fill="#fff4ed" stroke="#f7b27a" stroke-width="2"/><text x="65" y="128" font-size="18" font-weight="700" fill="#9c2a10">1 · Source audit</text><text x="65" y="158" font-size="14" fill="#7a271a">13 fields absent</text><text x="65" y="181" font-size="14" fill="#7a271a">No exact code, seeds,</text><text x="65" y="204" font-size="14" fill="#7a271a">horizon, or IS protocol</text></g>
+    <g><rect x="250" y="95" width="190" height="190" rx="12" fill="#fff4ed" stroke="#f7b27a" stroke-width="2"/><text x="270" y="128" font-size="18" font-weight="700" fill="#9c2a10">2 · Table audit</text><text x="270" y="158" font-size="14" fill="#7a271a">Direction supported</text><text x="270" y="181" font-size="14" fill="#7a271a">but ρ=.9 resembles</text><text x="270" y="204" font-size="14" fill="#7a271a">β=−.3, not stated β=0</text></g>
+    <g><rect x="455" y="95" width="190" height="190" rx="12" fill="#fff4ed" stroke="#f7b27a" stroke-width="2"/><text x="475" y="128" font-size="18" font-weight="700" fill="#9c2a10">3 · CPU profile</text><text x="475" y="158" font-size="14" fill="#7a271a">112.4 h / one seed</text><text x="475" y="181" font-size="14" fill="#7a271a">337.3 h / three seeds</text><text x="475" y="204" font-size="14" fill="#7a271a">lower-bound estimate</text></g>
+    <g><rect x="660" y="95" width="195" height="190" rx="12" fill="#fff4ed" stroke="#f7b27a" stroke-width="2"/><text x="680" y="128" font-size="18" font-weight="700" fill="#9c2a10">4 · Falsification</text><text x="680" y="158" font-size="14" fill="#7a271a">No assumption-valid</text><text x="680" y="181" font-size="14" fill="#7a271a">counterexample; stronger</text><text x="680" y="204" font-size="14" fill="#7a271a">control is falsified</text></g>
+  </g>
+  <line x1="140" y1="305" x2="758" y2="305" stroke="#f04438" stroke-width="4"/>
+  <polygon points="758,296 780,305 758,314" fill="#f04438"/>
+  <rect x="200" y="330" width="500" height="55" rx="27" fill="#b42318"/>
+  <text x="450" y="365" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#fff">BLOCKED · honest score contribution 0/2</text>
+</svg>

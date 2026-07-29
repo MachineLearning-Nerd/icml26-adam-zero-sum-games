@@ -1,0 +1,42 @@
+{
+  "checker": "result-only independent log-log regression with theorem burn-in audit",
+  "fixed_physical_time": true,
+  "all_burn_in_counts_exceed_theorem_threshold": true,
+  "checks": [
+    {
+      "initial_id": 0,
+      "corrected_order": 2.9830549280732677,
+      "control_order": 1.9903762812210029,
+      "corrected_is_h3": true,
+      "control_rejected_as_h3": true,
+      "control_is_h2": true
+    },
+    {
+      "initial_id": 1,
+      "corrected_order": 3.0091036701143734,
+      "control_order": 2.0007980533940395,
+      "corrected_is_h3": true,
+      "control_rejected_as_h3": true,
+      "control_is_h2": true
+    },
+    {
+      "initial_id": 2,
+      "corrected_order": 2.9830549280732677,
+      "control_order": 1.9903762812210029,
+      "corrected_is_h3": true,
+      "control_rejected_as_h3": true,
+      "control_is_h2": true
+    },
+    {
+      "initial_id": 3,
+      "corrected_order": 3.0091036701143734,
+      "control_order": 2.0007980533940395,
+      "corrected_is_h3": true,
+      "control_rejected_as_h3": true,
+      "control_is_h2": true
+    }
+  ],
+  "negative_control": "SignGDA-flow without the O(h) modified-equation correction",
+  "negative_control_failed_h3_contract": true,
+  "passed": true
+}

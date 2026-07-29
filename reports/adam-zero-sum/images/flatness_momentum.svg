@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="480" viewBox="0 0 900 480" role="img" aria-labelledby="title desc">
+  <title id="title">Beta and rho flatness sweeps</title>
+  <desc id="desc">At horizon ten thousand, cumulative L1 gradient increases with beta and decreases with rho in the interaction-dominated game.</desc>
+  <rect width="900" height="480" fill="#fbfbfd"/>
+  <text x="48" y="42" font-family="sans-serif" font-size="24" font-weight="700" fill="#172033">Both momentum directions match Section 5 on the published grid</text>
+  <text x="48" y="70" font-family="sans-serif" font-size="15" fill="#596579">Mean cumulative ‖∇f‖₁ at horizon 10,000; eight paired initial states</text>
+  <rect x="55" y="100" width="380" height="300" rx="10" fill="#f2f4f7"/>
+  <rect x="465" y="100" width="380" height="300" rx="10" fill="#f2f4f7"/>
+  <text x="75" y="132" font-family="sans-serif" font-size="18" font-weight="700" fill="#344054">β sweep · lower is flatter</text>
+  <text x="485" y="132" font-family="sans-serif" font-size="18" font-weight="700" fill="#344054">ρ sweep · lower is flatter</text>
+  <line x1="90" y1="350" x2="405" y2="350" stroke="#667085"/><line x1="90" y1="155" x2="90" y2="350" stroke="#667085"/>
+  <line x1="500" y1="350" x2="815" y2="350" stroke="#667085"/><line x1="500" y1="155" x2="500" y2="350" stroke="#667085"/>
+  <polyline points="105,315 175,312 245,306 315,292 390,180" fill="none" stroke="#d92d20" stroke-width="5"/>
+  <polyline points="520,175 610,211 700,276 800,330" fill="none" stroke="#039855" stroke-width="5"/>
+  <g fill="#d92d20"><circle cx="105" cy="315" r="7"/><circle cx="175" cy="312" r="7"/><circle cx="245" cy="306" r="7"/><circle cx="315" cy="292" r="7"/><circle cx="390" cy="180" r="7"/></g>
+  <g fill="#039855"><circle cx="520" cy="175" r="7"/><circle cx="610" cy="211" r="7"/><circle cx="700" cy="276" r="7"/><circle cx="800" cy="330" r="7"/></g>
+  <g font-family="sans-serif" font-size="13" fill="#596579">
+    <text x="92" y="375">−.3</text><text x="166" y="375">0</text><text x="238" y="375">.3</text><text x="308" y="375">.6</text><text x="382" y="375">.9</text>
+    <text x="512" y="375">.3</text><text x="602" y="375">.5</text><text x="692" y="375">.7</text><text x="792" y="375">.9</text>
+    <text x="97" y="165">0.5998</text><text x="97" y="338">0.5599</text>
+    <text x="510" y="165">0.02886</text><text x="748" y="322">0.02237</text>
+  </g>
+  <text x="75" y="430" font-family="sans-serif" font-size="14" fill="#344054">99% paired-CI lower bounds: β contrast 0.0365; ρ contrast 0.00591 — both &gt; 0</text>
+</svg>

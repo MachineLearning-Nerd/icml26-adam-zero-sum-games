@@ -1,0 +1,14 @@
+{
+  "checker": "independent result-only checker for accepted Claims 1-3",
+  "claim_checks": {
+    "claim1_strict_boundary_order": true,
+    "claim2_both_bounds_strict": true,
+    "claim3_bilinear_zero-bound_certificate": true
+  },
+  "negative_controls": {
+    "claim1_reversed_observations_fail": true,
+    "claim2_constant_bound_fails_strictness": true,
+    "claim3_positive_real_part_fails_bilinear_certificate": true
+  },
+  "passed": true
+}

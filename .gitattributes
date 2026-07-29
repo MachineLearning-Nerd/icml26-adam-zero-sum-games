@@ -1,0 +1,3 @@
+.openresearch/artifacts/release/raw/*.csv -text -diff
+reports/adam-zero-sum/raw/*.csv -text -diff
+release/space_upload/evidence/raw/*.csv -text -diff

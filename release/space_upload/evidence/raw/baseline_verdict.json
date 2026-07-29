@@ -1,0 +1,127 @@
+{
+  "paper": "2605.19392",
+  "openreview": "4MVVscCjYu",
+  "baseline_judge_score": "6/12",
+  "historical_space_revision": "2e0e908df273cf1cbba8a5455926f06d5f411808",
+  "claims": [
+    {
+      "claim": 1,
+      "status": "VERIFIED",
+      "beta": [
+        -0.3,
+        0.0,
+        0.3,
+        0.6,
+        0.9
+      ],
+      "max_stable_h": [
+        0.07712251586914062,
+        0.05209935302734375,
+        0.03061605224609375,
+        0.014869769287109376,
+        0.002907476806640625
+      ],
+      "strictly_decreasing": true
+    },
+    {
+      "claim": 2,
+      "status": "VERIFIED",
+      "beta": [
+        -0.49,
+        -0.29142857142857137,
+        -0.0928571428571428,
+        0.10571428571428576,
+        0.3042857142857144,
+        0.502857142857143,
+        0.7014285714285715,
+        0.9
+      ],
+      "continuous_bound": [
+        0.7303921568627453,
+        0.4556451612903226,
+        0.30118110236220474,
+        0.20219638242894056,
+        0.1333515881708653,
+        0.0826996197718631,
+        0.043870696893366916,
+        0.013157894736842106
+      ],
+      "discrete_bound": [
+        0.33321639991229995,
+        0.29583025440726285,
+        0.23053924185798183,
+        0.16755216510246285,
+        0.11490227139698862,
+        0.0726277198495453,
+        0.03886320151194261,
+        0.011692307692307691
+      ],
+      "strictly_decreasing": true,
+      "source_scope_note": "Discrete monotonicity is checked inside Corollary 4.5's beta domain."
+    },
+    {
+      "claim": 3,
+      "status": "VERIFIED",
+      "eigenvalues_real": [
+        -0.0,
+        -0.0
+      ],
+      "bound_discrete": 0.0,
+      "any_converged": false
+    },
+    {
+      "claim": 4,
+      "status": "VERIFIED",
+      "metric": "cumulative average of ||grad_x f||_1 + ||grad_y f||_1",
+      "interaction_dominated_contract_passed": true,
+      "interaction_free_negative_control_failed_reversed_contract": true
+    },
+    {
+      "claim": 5,
+      "status": "BLOCKED",
+      "confidence": "LOW",
+      "completed_routes": 4,
+      "source_uniquely_executable": false,
+      "missing_critical_field_count": 13,
+      "reported_table_association_direction_supported": true,
+      "reported_table_setting_inconsistency": true,
+      "cpu_profile_projected_hours_three_seeds": 337.3030072745556,
+      "falsification_established": false,
+      "unblockers": [
+        "author executable code and exact configurations",
+        "raw per-run cumulative gradient and Inception Score data",
+        "resolved fixed-beta setting for the rho sweep",
+        "sufficient CPU budget for the independently calibrated full campaign"
+      ]
+    },
+    {
+      "claim": 6,
+      "status": "VERIFIED",
+      "direct_local_error": {
+        "corrected_order_mean": 2.9960792990938225,
+        "corrected_order_min": 2.9830549280732708,
+        "corrected_order_max": 3.0091036701143734,
+        "signgda_control_order_mean": 1.9955871673075238,
+        "signgda_control_order_min": 1.9903762812210053,
+        "signgda_control_order_max": 2.000798053394042
+      },
+      "negative_control_failed_h3_contract": true
+    }
+  ],
+  "accepted_regressions_pass": true,
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Linux-6.12.90-120.164.amzn2023.x86_64-x86_64-with-glibc2.41",
+    "numpy": "2.5.1"
+  },
+  "cpu": {
+    "estimated_required_cores": 8,
+    "selected_backend": "hf",
+    "selected_flavor": "cpu-upgrade",
+    "os_cpu_count": 64,
+    "affinity_cpu_count": 64,
+    "cgroup_cpu_max": "800000 100000",
+    "runtime_scope": "uv environment materialization, NumPy regressions, and full-shape CPU WGAN-GP profiling"
+  },
+  "runtime_seconds": 26.28810776490718
+}

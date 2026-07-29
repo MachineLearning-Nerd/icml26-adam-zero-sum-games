@@ -1,0 +1,8 @@
+{
+  "claim": 2,
+  "source_anchor": "Corollary 4.5",
+  "statement": "The continuous and discrete stable-step-size upper bounds are strictly decreasing functions of beta in (-1,1).",
+  "domain": "The interaction-dominated eigenvalue pair -1 plus/minus 3i and eight beta values strictly inside (-1,1).",
+  "pass_condition": "Both independently recomputed bound sequences are strictly decreasing.",
+  "verdict": "VERIFIED"
+}

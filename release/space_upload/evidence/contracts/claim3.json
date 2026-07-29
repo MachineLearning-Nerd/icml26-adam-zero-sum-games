@@ -1,0 +1,8 @@
+{
+  "claim": 3,
+  "source_anchor": "Corollary 4.6",
+  "statement": "Adam-DA does not converge on bilinear zero-sum games for any momentum and positive step-size choice.",
+  "domain": "Bilinear game f(x,y)=xy, whose game Jacobian has purely imaginary eigenvalues.",
+  "pass_condition": "The theorem bound certificate is exactly zero and no configuration in the corroborating sweep converges.",
+  "verdict": "VERIFIED"
+}

@@ -1,0 +1,20 @@
+{
+  "claim": 6,
+  "verdict_target": "VERIFIED",
+  "paper_statement": "For a smooth zero-sum loss with bounded derivatives through fourth order, Continuous Adam-DA is locally O(h^3)-close to Adam-DA after max{2 log(h)/log|beta|, 2 log(h)/log(rho)} steps on any fixed finite time horizon.",
+  "domain": {
+    "step_size": "h > 0, asymptotic h -> 0",
+    "beta": "(-1, 1), tested at 0.2",
+    "rho": "(0, 1), tested at 0.5",
+    "epsilon": "> 0, tested at 0.1",
+    "loss": "smooth with bounded derivatives through fourth order"
+  },
+  "machine_check": {
+    "corrected_ode_observed_order": "[2.70, 3.30] independently for every initial point",
+    "signgda_negative_control_order": "[1.70, 2.30]",
+    "signgda_rejected_as_h3": "observed order < 2.40",
+    "fixed_horizon": "all histories reach exactly t=0.2 before the local comparison",
+    "burn_in": "per-h step count is independently checked to strictly exceed the paper threshold"
+  },
+  "non_circularity": "The eight h values are selected because each divides the independently fixed physical time t=0.2 exactly. The four initial points and acceptance interval are unchanged from the frozen first route. The theorem formula is used only as a post hoc eligibility audit, not to choose a sample count, slope, or tolerance."
+}

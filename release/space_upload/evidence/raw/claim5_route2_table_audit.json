@@ -1,0 +1,173 @@
+{
+  "claim": 5,
+  "route": 2,
+  "route_name": "reported-table consistency and association audit",
+  "source_hashes": {
+    "Table_1.tex": "fa81759aa1061d92d58eae6c060b53595648567dbf2273857fbd589ca9dc361e",
+    "Table_2.tex": "90fae30aa8711bd0033d3af97d9b3ec480536dae2aba4540851cbeea80f899bd"
+  },
+  "beta_values_ascending": [
+    -0.5,
+    -0.3,
+    -0.2,
+    0.0,
+    0.2,
+    0.3,
+    0.5
+  ],
+  "beta_inception_scores": {
+    "ResNet CIFAR-10": [
+      7.002,
+      7.087,
+      7.02,
+      7.022,
+      5.217,
+      4.698,
+      4.16
+    ],
+    "ResNet STL-10": [
+      6.878,
+      7.181,
+      6.969,
+      6.445,
+      5.565,
+      4.858,
+      4.447
+    ],
+    "CNN CIFAR-10": [
+      6.761,
+      7.01,
+      7.062,
+      6.804,
+      6.519,
+      6.322,
+      4.942
+    ],
+    "CNN STL-10": [
+      7.52,
+      7.791,
+      7.383,
+      7.594,
+      7.302,
+      7.178,
+      6.775
+    ]
+  },
+  "rho_values_ascending": [
+    0.3,
+    0.5,
+    0.7,
+    0.9
+  ],
+  "rho_inception_scores": {
+    "ResNet CIFAR-10": [
+      6.265,
+      6.308,
+      6.483,
+      7.087
+    ],
+    "ResNet STL-10": [
+      5.571,
+      6.335,
+      6.486,
+      7.187
+    ],
+    "CNN CIFAR-10": [
+      6.28,
+      6.685,
+      6.809,
+      7.01
+    ],
+    "CNN STL-10": [
+      6.541,
+      6.775,
+      7.332,
+      7.791
+    ]
+  },
+  "beta_summaries": [
+    {
+      "setting": "ResNet CIFAR-10",
+      "spearman_beta_vs_is": -0.7500000000000002,
+      "strict_is_decrease_as_beta_increases": false,
+      "best_beta": -0.3
+    },
+    {
+      "setting": "ResNet STL-10",
+      "spearman_beta_vs_is": -0.8928571428571429,
+      "strict_is_decrease_as_beta_increases": false,
+      "best_beta": -0.3
+    },
+    {
+      "setting": "CNN CIFAR-10",
+      "spearman_beta_vs_is": -0.7500000000000002,
+      "strict_is_decrease_as_beta_increases": false,
+      "best_beta": -0.2
+    },
+    {
+      "setting": "CNN STL-10",
+      "spearman_beta_vs_is": -0.8214285714285715,
+      "strict_is_decrease_as_beta_increases": false,
+      "best_beta": -0.3
+    }
+  ],
+  "rho_summaries": [
+    {
+      "setting": "ResNet CIFAR-10",
+      "strict_is_increase_as_rho_increases": true,
+      "spearman_rho_vs_is": 1.0
+    },
+    {
+      "setting": "ResNet STL-10",
+      "strict_is_increase_as_rho_increases": true,
+      "spearman_rho_vs_is": 1.0
+    },
+    {
+      "setting": "CNN CIFAR-10",
+      "strict_is_increase_as_rho_increases": true,
+      "spearman_rho_vs_is": 1.0
+    },
+    {
+      "setting": "CNN STL-10",
+      "strict_is_increase_as_rho_increases": true,
+      "spearman_rho_vs_is": 1.0
+    }
+  ],
+  "fixed_beta_consistency": [
+    {
+      "setting": "ResNet CIFAR-10",
+      "table2_rho_point9": 7.087,
+      "table1_beta_zero": 7.022,
+      "table1_beta_minus_point_three": 7.087,
+      "distance_to_beta_zero": 0.0649999999999995,
+      "distance_to_beta_minus_point_three": 0.0
+    },
+    {
+      "setting": "ResNet STL-10",
+      "table2_rho_point9": 7.187,
+      "table1_beta_zero": 6.445,
+      "table1_beta_minus_point_three": 7.181,
+      "distance_to_beta_zero": 0.742,
+      "distance_to_beta_minus_point_three": 0.006000000000000227
+    },
+    {
+      "setting": "CNN CIFAR-10",
+      "table2_rho_point9": 7.01,
+      "table1_beta_zero": 6.804,
+      "table1_beta_minus_point_three": 7.01,
+      "distance_to_beta_zero": 0.20599999999999952,
+      "distance_to_beta_minus_point_three": 0.0
+    },
+    {
+      "setting": "CNN STL-10",
+      "table2_rho_point9": 7.791,
+      "table1_beta_zero": 7.594,
+      "table1_beta_minus_point_three": 7.791,
+      "distance_to_beta_zero": 0.19700000000000006,
+      "distance_to_beta_minus_point_three": 0.0
+    }
+  ],
+  "paper_text_fixed_beta_for_rho_sweep": 0.0,
+  "verdict": "BLOCKED",
+  "reason": "Reported aggregate IS values support directional association, but are not reproduction data and Table 2's rho=0.9 values align with the beta=-0.3 row rather than the text's fixed beta=0 setting."
+}

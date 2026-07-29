@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="480" viewBox="0 0 900 480" role="img" aria-labelledby="title desc">
+  <title id="title">Corrected ODE has third-order local error while SignGDA control has second-order error</title>
+  <desc id="desc">Observed log-log slopes average 2.996 for the corrected ODE and 1.996 for the control.</desc>
+  <rect width="900" height="480" fill="#fbfbfd"/>
+  <text x="50" y="42" font-family="sans-serif" font-size="24" font-weight="700" fill="#172033">The modified ODE recovers the claimed O(h³) local error</text>
+  <text x="50" y="70" font-family="sans-serif" font-size="15" fill="#596579">Four initial states · eight h values · fixed physical warm-up · 128-substep RK4 reference</text>
+  <line x1="100" y1="390" x2="840" y2="390" stroke="#344054" stroke-width="2"/>
+  <line x1="100" y1="95" x2="100" y2="390" stroke="#344054" stroke-width="2"/>
+  <g stroke="#d8dee9"><line x1="100" y1="315" x2="840" y2="315"/><line x1="100" y1="240" x2="840" y2="240"/><line x1="100" y1="165" x2="840" y2="165"/></g>
+  <polyline points="145,130 240,158 340,190 455,230 570,267 675,306 780,348" fill="none" stroke="#175cd3" stroke-width="5"/>
+  <polyline points="145,216 240,236 340,260 455,288 570,314 675,340 780,370" fill="none" stroke="#d92d20" stroke-width="5"/>
+  <g font-family="sans-serif" font-size="15" font-weight="700">
+    <text x="560" y="220" fill="#175cd3">corrected ODE: slope 2.996</text>
+    <text x="560" y="285" fill="#d92d20">SignGDA control: slope 1.996</text>
+  </g>
+  <g font-family="sans-serif" font-size="13" fill="#596579">
+    <text x="125" y="414">0.0125</text><text x="752" y="414">0.0025</text>
+    <text x="420" y="450" font-size="15">step size h (decreasing →)</text>
+    <text x="22" y="280" transform="rotate(-90 22 280)" font-size="15">one-step error (log scale)</text>
+  </g>
+  <rect x="110" y="100" width="250" height="62" rx="8" fill="#eff8ff" stroke="#b2ddff"/>
+  <text x="126" y="126" font-family="sans-serif" font-size="14" fill="#1849a9">All theorem burn-in thresholds passed</text>
+  <text x="126" y="148" font-family="sans-serif" font-size="14" fill="#1849a9">minimum interaction ratio: 3.168</text>
+</svg>

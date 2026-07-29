@@ -1,0 +1,8 @@
+{
+  "checker": "independent assumptions-and-quantifier falsification checker",
+  "stronger_universal_claim_control_is_falsified": true,
+  "assumption_violating_quadratic_candidate_rejected": true,
+  "exact_claim_has_no_valid_counterexample": true,
+  "final_status_blocked_with_unblockers": true,
+  "passed": true
+}

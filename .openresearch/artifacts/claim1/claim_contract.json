@@ -1,0 +1,8 @@
+{
+  "claim": 1,
+  "source_anchor": "Theorems 4.3 and 4.4",
+  "statement": "In an interaction-dominated zero-sum game, smaller first-order momentum beta permits a broader stable Adam-DA step-size range.",
+  "domain": "Quadratic zero-sum game with Jacobian eigenvalues -1 plus/minus 3i; beta in {-0.3,0,0.3,0.6,0.9}.",
+  "pass_condition": "A fixed-criterion binary search returns a strictly decreasing maximum stable h as beta increases.",
+  "verdict": "VERIFIED"
+}

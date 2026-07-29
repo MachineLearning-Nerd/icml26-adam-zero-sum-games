@@ -1,0 +1,91 @@
+{
+  "claim": 5,
+  "route": 4,
+  "route_name": "mandatory falsification",
+  "exact_contract": {
+    "statement": "For the paper's ResNet and CNN improved-WGAN experiments on CIFAR-10 and STL-10, smaller beta and larger rho empirically tend to produce lower cumulative AvgS, and lower AvgS tends to coincide with higher Inception Score.",
+    "domain": [
+      "actual GAN training",
+      "ResNet and CNN architectures",
+      "CIFAR-10 and STL-10",
+      "paper-defined cumulative parameter-gradient L1 AvgS",
+      "Inception Score from the corresponding trained models"
+    ],
+    "quantifier": "qualitative empirical tendency across settings, not a universal strict ordering for every adjacent momentum pair or seed"
+  },
+  "primary_sources": [
+    {
+      "name": "paper HTML",
+      "sha256": "c7ebf813dc871eba1c0c93542fcf0a7d599c7c4d44a543a0000270ce48ae7998",
+      "anchors": [
+        "Section 5",
+        "Appendix D",
+        "Tables 1-2"
+      ]
+    },
+    {
+      "name": "Improved Training of Wasserstein GANs",
+      "arxiv": "1704.00028",
+      "role": "framework reference, not proof of the target implementation"
+    }
+  ],
+  "candidates": [
+    {
+      "name": "beta_minus_point5_vs_minus_point3_reported_IS",
+      "evidence": {
+        "beta_minus_point5": [
+          7.002,
+          6.878,
+          6.761,
+          7.52
+        ],
+        "beta_minus_point3": [
+          7.087,
+          7.181,
+          7.01,
+          7.791
+        ]
+      },
+      "gan_domain_satisfied": true,
+      "all_required_joint_gradient_and_is_evidence_present": false,
+      "contradicts_exact_tendency_quantifier": false,
+      "rejection_reason": "Every smaller-beta IS is lower for this one adjacent pair, but the source claim says 'tend' and no per-run joint AvgS/IS data are available. This refutes only a stronger universal claim."
+    },
+    {
+      "name": "table2_fixed_beta_metadata_mismatch",
+      "gan_domain_satisfied": true,
+      "all_required_joint_gradient_and_is_evidence_present": false,
+      "contradicts_exact_tendency_quantifier": false,
+      "rejection_reason": "The mismatch makes the experiment ambiguous; it is not a performance counterexample."
+    },
+    {
+      "name": "quadratic_rho_point95_point99_reversal",
+      "gan_domain_satisfied": false,
+      "all_required_joint_gradient_and_is_evidence_present": false,
+      "contradicts_exact_tendency_quantifier": false,
+      "rejection_reason": "The analytic quadratic is interaction-dominated but is not a ResNet/CNN GAN on CIFAR-10 or STL-10."
+    },
+    {
+      "name": "synthetic_full_shape_cpu_profile",
+      "gan_domain_satisfied": false,
+      "all_required_joint_gradient_and_is_evidence_present": false,
+      "contradicts_exact_tendency_quantifier": false,
+      "rejection_reason": "Synthetic tensors measure runtime only and contain neither dataset training nor Inception Scores."
+    }
+  ],
+  "universalized_negative_control": {
+    "statement": "IS is strictly nondecreasing whenever beta becomes smaller.",
+    "is_the_paper_exact_quantifier": false,
+    "counterexample": "beta=-0.5 has lower reported IS than beta=-0.3 in all four settings",
+    "counterexample_detected": true
+  },
+  "valid_assumption_satisfying_counterexamples": [],
+  "falsification_established": false,
+  "verdict": "BLOCKED",
+  "unblockers": [
+    "author executable code and exact configurations",
+    "raw per-run cumulative gradient and Inception Score data",
+    "resolved fixed-beta setting for the rho sweep",
+    "sufficient CPU budget for the independently calibrated full campaign"
+  ]
+}

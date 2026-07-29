@@ -1,0 +1,82 @@
+{
+  "format": "openresearch-text-evidence-bundle-v1",
+  "fixed_command": "uv run --locked python repro/src/verify.py",
+  "git_sha": "43327acebf41a3f13e73f2a57337e383eb87376c",
+  "files": [
+    {
+      "path": "baseline_verdict.json",
+      "bytes": 3670,
+      "sha256": "555fc0072445d6d7b00762604d4e41943bca0829afd2a62e853701aa372cf8a4"
+    },
+    {
+      "path": "claim4_checker.json",
+      "bytes": 5523,
+      "sha256": "d703a4dc1270b19b58a9c35c1232e0626a4224c94f8cb19233b799a423b7b68d"
+    },
+    {
+      "path": "claim4_flatness.csv",
+      "bytes": 49278,
+      "sha256": "b632f1148165b022f16c5cd2167cb2a41738f5129bea9519feb539c6f4744bd6"
+    },
+    {
+      "path": "claim4_flatness.json",
+      "bytes": 1277,
+      "sha256": "78f339e0c89686c9c2f0f10722d068588c19b448ee8d36a83ea4adc9720a6975"
+    },
+    {
+      "path": "claim5_route1_checker.json",
+      "bytes": 428,
+      "sha256": "799841339e667b02f0c5ed8b489c4dc02aa8ab5bee372c6b97354e79ded0ad08"
+    },
+    {
+      "path": "claim5_route1_source_audit.json",
+      "bytes": 1949,
+      "sha256": "2501f8fcd50c08c3d526d9964554476c984163a742c3d73bf2c7e1cdce9eff91"
+    },
+    {
+      "path": "claim5_route2_checker.json",
+      "bytes": 349,
+      "sha256": "5a80ce728318234ce4093a320413c55bab6a9d78cc065261e01860294ecee334"
+    },
+    {
+      "path": "claim5_route2_table_audit.json",
+      "bytes": 3939,
+      "sha256": "8558951c54e32c4079146d4d4485e5da6e1e3fa7cf61d641b4a7ccda28bd3f8f"
+    },
+    {
+      "path": "claim5_route3_checker.json",
+      "bytes": 346,
+      "sha256": "b782a04c817ce1721aae70a7bec9cf0cd46e7d456e2bcb13f7320de767c7add3"
+    },
+    {
+      "path": "claim5_route3_cpu_profile.json",
+      "bytes": 3234,
+      "sha256": "7f7a79cf4737c4c1e8ec8229674521ea07d4ccdebe79a1e5727a4ddfd389690f"
+    },
+    {
+      "path": "claim5_route4_checker.json",
+      "bytes": 315,
+      "sha256": "440b2fcb2d59c3b8103d522ab15d3cc34fca03b77ba945a7540296aa6d42657d"
+    },
+    {
+      "path": "claim5_route4_falsification.json",
+      "bytes": 3578,
+      "sha256": "093e3f3b471f722cad572629dc8d573e6e1107fffd6138ecf10ab337ca9874bd"
+    },
+    {
+      "path": "claim6_checker.json",
+      "bytes": 1226,
+      "sha256": "aad88e8195aef13c74bc66eb6de71c628d1493a5c9923ece7d739fb4b4fec336"
+    },
+    {
+      "path": "claim6_local_error.csv",
+      "bytes": 5444,
+      "sha256": "4dd0f0a185f24a629c7c9f7bca892a6fdeab3e69c67d5353ad1cfdb895dbc31e"
+    },
+    {
+      "path": "claim6_local_error.json",
+      "bytes": 4716,
+      "sha256": "514ccde9f99994d86a2948470f043def69b6b953f0bccc3f6be97ba322ae72f8"
+    }
+  ]
+}

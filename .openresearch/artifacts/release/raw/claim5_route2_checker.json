@@ -1,0 +1,9 @@
+{
+  "checker": "result-only reported-table audit",
+  "all_beta_rank_associations_have_paper_direction": true,
+  "beta_association_is_not_strictly_monotone": true,
+  "all_rho_tables_are_strictly_monotone": true,
+  "table2_rho_point9_is_closer_to_beta_minus_point3_than_beta0": true,
+  "blocked_instead_of_reproduction_pass": true,
+  "passed": true
+}

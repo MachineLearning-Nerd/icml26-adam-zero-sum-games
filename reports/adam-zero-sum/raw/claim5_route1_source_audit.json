@@ -1,0 +1,59 @@
+{
+  "claim": 5,
+  "route": 1,
+  "route_name": "source completeness audit",
+  "source": {
+    "ar5iv_url": "https://ar5iv.labs.arxiv.org/html/2605.19392",
+    "retrieval_date_utc": "2026-07-29",
+    "html_sha256": "c7ebf813dc871eba1c0c93542fcf0a7d599c7c4d44a543a0000270ce48ae7998",
+    "source_tar_sha256": "9922a66ab5708f357aa8be09f207565791a6488f48b0d8d2cf27011964521265",
+    "anchors": [
+      "Section 5 Experimental Setting and Results",
+      "Appendix D / Additional Materials for Section 5",
+      "Table 1",
+      "Table 2"
+    ]
+  },
+  "disclosed": {
+    "datasets": [
+      "CIFAR-10 32x32",
+      "STL-10 64x64"
+    ],
+    "architectures": [
+      "ResNet",
+      "CNN"
+    ],
+    "framework": "generally follows improved Wasserstein GAN",
+    "optimizer": "simultaneous Adam-DA for generator and discriminator",
+    "learning_rate": 0.0002,
+    "batch_size": 64,
+    "beta_sweep_fixed_rho": 0.9,
+    "rho_sweep_fixed_beta": 0.0,
+    "rho_values_from_table_2": [
+      0.3,
+      0.5,
+      0.7,
+      0.9
+    ],
+    "metric": "cumulative average parameter-gradient L1 norm and Inception Score"
+  },
+  "required_reproduction_fields": {
+    "executable_author_code": false,
+    "exact_resnet_definition": false,
+    "exact_cnn_definition": false,
+    "dataset_split_and_preprocessing": false,
+    "latent_distribution_and_dimension": false,
+    "critic_to_generator_update_ratio": false,
+    "gradient_penalty_coefficient": false,
+    "adam_epsilon": false,
+    "training_seeds": false,
+    "main_experiment_training_horizon": false,
+    "inception_implementation_and_sample_count": false,
+    "raw_gradient_norm_timeseries": false,
+    "per_seed_inception_scores": false
+  },
+  "missing_critical_field_count": 13,
+  "author_source_uniquely_executable": false,
+  "verdict": "BLOCKED",
+  "reason": "The source fixes the headline setting but does not identify a unique architecture, training process, seed distribution, or IS evaluator."
+}

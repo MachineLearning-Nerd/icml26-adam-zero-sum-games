@@ -1,0 +1,10 @@
+{
+  "checker": "result-only CPU feasibility checker",
+  "four_reported_shape_architecture_pairs_profiled": true,
+  "batch_size_64": true,
+  "forward_only_control_is_faster": true,
+  "training_and_gradient_measurements_positive": true,
+  "cpu_upgrade_allocation_audited": true,
+  "profile_not_promoted_to_claim_evidence": true,
+  "passed": true
+}
