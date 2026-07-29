@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 import os
 import platform
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -17,6 +18,7 @@ from pathlib import Path
 import numpy as np
 
 import core as M
+import claim6_local_error
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -105,16 +107,34 @@ def main() -> int:
     started = time.perf_counter()
     claims = accepted_regressions()
     claims.extend(
+        [
+            {"claim": 4, "status": "BLOCKED", "reason": "Historical baseline varies beta but not rho."},
+            {"claim": 5, "status": "BLOCKED", "reason": "Historical baseline contains no GAN training evidence."},
+        ]
+    )
+    claim6 = claim6_local_error.run(OUTPUT)
+    checker_path = OUTPUT / "claim6_checker.json"
+    checker = subprocess.run(
+        [
+            sys.executable,
+            str(Path(__file__).with_name("check_claim6.py")),
+            str(OUTPUT / "claim6_local_error.csv"),
+            str(checker_path),
+        ],
+        check=False,
+    )
+    checker_payload = json.loads(checker_path.read_text()) if checker_path.exists() else {"passed": False}
+    claim6_status = "VERIFIED" if checker.returncode == 0 and checker_payload["passed"] else "FAILED"
+    claim6["verdict"] = claim6_status
+    claims.append(
         {
-            "claim": claim,
-            "status": "BLOCKED",
-            "reason": reason,
+            "claim": 6,
+            "status": claim6_status,
+            "direct_local_error": claim6["summary"],
+            "negative_control_failed_h3_contract": checker_payload.get(
+                "negative_control_failed_h3_contract", False
+            ),
         }
-        for claim, reason in (
-            (4, "Historical baseline varies beta but not rho."),
-            (5, "Historical baseline contains no GAN training evidence."),
-            (6, "Historical baseline tests stability-bound agreement, not one-step O(h^3) local error."),
-        )
     )
     accepted_pass = all(item["status"] == "VERIFIED" for item in claims[:3])
     payload = {
@@ -136,8 +156,10 @@ def main() -> int:
     (OUTPUT / "baseline_verdict.json").write_text(json.dumps(payload, indent=2) + "\n")
     print("=== FROZEN BASELINE EVIDENCE ===")
     print(json.dumps(payload, indent=2))
-    if not accepted_pass:
-        print("ERROR: a previously accepted claim regressed", file=sys.stderr)
+    print("=== CLAIM 6 RAW LOCAL-ERROR EVIDENCE ===")
+    print(json.dumps(claim6, indent=2))
+    if not accepted_pass or claim6_status != "VERIFIED":
+        print("ERROR: cumulative claim verification failed", file=sys.stderr)
         return 1
     return 0
 
