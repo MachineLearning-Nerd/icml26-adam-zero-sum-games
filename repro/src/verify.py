@@ -7,6 +7,7 @@ claim-specific evidence.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import platform
@@ -47,6 +48,43 @@ def cpu_allocation() -> dict[str, object]:
         "cgroup_cpu_max": cgroup_cpu_max,
         "runtime_scope": "uv environment materialization, NumPy regressions, and full-shape CPU WGAN-GP profiling",
     }
+
+
+def emit_output_bundle(output_dir: Path) -> dict[str, object]:
+    files: list[dict[str, object]] = []
+    for path in sorted(output_dir.iterdir()):
+        if not path.is_file() or path.name == "output_manifest.json":
+            continue
+        content = path.read_bytes()
+        files.append(
+            {
+                "path": path.name,
+                "bytes": len(content),
+                "sha256": hashlib.sha256(content).hexdigest(),
+            }
+        )
+    manifest = {
+        "format": "openresearch-text-evidence-bundle-v1",
+        "fixed_command": "uv run --locked python repro/src/verify.py",
+        "git_sha": subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip(),
+        "files": files,
+    }
+    manifest_path = output_dir / "output_manifest.json"
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
+    for path in sorted(output_dir.iterdir()):
+        if not path.is_file():
+            continue
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        text = path.read_text()
+        print(f"=== BEGIN RAW FILE {path.name} SHA256 {digest} ===")
+        print(text, end="" if text.endswith("\n") else "\n")
+        print(f"=== END RAW FILE {path.name} ===")
+    return manifest
 
 
 def max_stable_h(beta: float, rho: float = 0.9, steps: int = 1500) -> float:
@@ -294,6 +332,7 @@ def main() -> int:
     print(json.dumps(claim5_route3, indent=2))
     print("=== CLAIM 5 ROUTE 4 FALSIFICATION ===")
     print(json.dumps(claim5_route4, indent=2))
+    emit_output_bundle(OUTPUT)
     if (
         not accepted_pass
         or claim4_status != "VERIFIED"
