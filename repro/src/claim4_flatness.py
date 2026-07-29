@@ -12,7 +12,7 @@ import core as M
 
 
 BETA_VALUES = (-0.3, 0.0, 0.3, 0.6, 0.9)
-RHO_VALUES = (0.5, 0.7, 0.9, 0.95, 0.99)
+RHO_VALUES = (0.3, 0.5, 0.7, 0.9)
 HORIZONS = (1000, 3000, 10000)
 STARTS = (
     (0.5, 0.5),

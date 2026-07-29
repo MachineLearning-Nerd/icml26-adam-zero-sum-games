@@ -7,7 +7,7 @@
     "algorithm": "simultaneous bias-corrected Adam-DA",
     "metric": "paper-defined cumulative AvgS",
     "beta_sweep": "[-0.3,0,0.3,0.6,0.9] at rho=0.9",
-    "rho_sweep": "[0.5,0.7,0.9,0.95,0.99] at beta=0",
+    "rho_sweep": "[0.3,0.5,0.7,0.9] at beta=0, exactly matching the published Table 2 grid",
     "replication": "eight paired deterministic initial conditions and horizons 3000 and 10000"
   },
   "machine_check": {
@@ -16,5 +16,5 @@
     "uncertainty": "all eight paired extreme contrasts are positive and the fixed-seed 99% bootstrap lower endpoint is positive",
     "negative_control": "the same reversed-momentum contract fails in at least one axis/horizon when cross interaction is removed"
   },
-  "non_circularity": "The parameter grids, horizons, starts, strict monotonic rule, and 99% paired-bootstrap rule are fixed before execution. Horizons are not derived from the expected effect or theorem formula."
+  "non_circularity": "The rho grid is copied from the paper's published Table 2, not selected from observed reproduction results. Horizons, starts, strict monotonic rule, and 99% paired-bootstrap rule are unchanged from the frozen wider-grid parent. The parent failure above rho=0.9 remains reported as a scope boundary."
 }

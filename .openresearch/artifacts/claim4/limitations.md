@@ -9,3 +9,6 @@
   and stability scale simultaneously.
 - The eight deterministic starts quantify trajectory variation; they are not
   random samples from a population.
+- The published rho grid ends at 0.9. The frozen parent shows that the trend
+  reverses at 0.95 and 0.99 in this quadratic game, so this evidence must not
+  be extrapolated to every rho in `(0,1)`.
