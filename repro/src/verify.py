@@ -20,6 +20,7 @@ import numpy as np
 import core as M
 import claim4_flatness
 import claim5_source_audit
+import claim5_table_audit
 import claim6_local_error
 
 
@@ -161,13 +162,40 @@ def main() -> int:
         if claim5_checker_path.exists()
         else {"passed": False}
     )
+    claim5_route2 = claim5_table_audit.run(OUTPUT)
+    claim5_route2_checker_path = OUTPUT / "claim5_route2_checker.json"
+    claim5_route2_checker = subprocess.run(
+        [
+            sys.executable,
+            str(Path(__file__).with_name("check_claim5_route2.py")),
+            str(OUTPUT / "claim5_route2_table_audit.json"),
+            str(claim5_route2_checker_path),
+        ],
+        check=False,
+    )
+    claim5_route2_checker_payload = (
+        json.loads(claim5_route2_checker_path.read_text())
+        if claim5_route2_checker_path.exists()
+        else {"passed": False}
+    )
     claims.append(
         {
             "claim": 5,
             "status": "BLOCKED",
-            "completed_routes": 1,
+            "completed_routes": 2,
             "source_uniquely_executable": claim5["author_source_uniquely_executable"],
             "missing_critical_field_count": claim5["missing_critical_field_count"],
+            "reported_table_association_direction_supported": (
+                claim5_route2_checker_payload.get(
+                    "all_beta_rank_associations_have_paper_direction", False
+                )
+                and claim5_route2_checker_payload.get(
+                    "all_rho_tables_are_strictly_monotone", False
+                )
+            ),
+            "reported_table_setting_inconsistency": claim5_route2_checker_payload.get(
+                "table2_rho_point9_is_closer_to_beta_minus_point3_than_beta0", False
+            ),
         }
     )
     claim6 = claim6_local_error.run(OUTPUT)
@@ -220,11 +248,15 @@ def main() -> int:
     print(json.dumps(claim4, indent=2))
     print("=== CLAIM 5 ROUTE 1 SOURCE AUDIT ===")
     print(json.dumps(claim5, indent=2))
+    print("=== CLAIM 5 ROUTE 2 TABLE AUDIT ===")
+    print(json.dumps(claim5_route2, indent=2))
     if (
         not accepted_pass
         or claim4_status != "VERIFIED"
         or claim5_checker.returncode != 0
         or not claim5_checker_payload["passed"]
+        or claim5_route2_checker.returncode != 0
+        or not claim5_route2_checker_payload["passed"]
         or claim6_status != "VERIFIED"
     ):
         print("ERROR: cumulative claim verification failed", file=sys.stderr)
