@@ -17,3 +17,8 @@ Route 3 exits nonzero unless all four architecture/shape pairs use batch 64,
 the WGAN-GP training timings and gradient measurements are positive, the
 forward-only control is faster, the HF CPU allocation is audited, and the
 profile remains explicitly excluded from scientific claim evidence.
+
+Route 4 exits nonzero unless the checker detects the deliberately stronger
+universal-claim counterexample, rejects the quadratic example for violating the
+GAN domain, finds no exact-quantifier counterexample, and records a final
+BLOCKED result with concrete unblockers.

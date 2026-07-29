@@ -10,5 +10,5 @@
   },
   "verified_contract": "Requires actual training of both named architectures on both named datasets, both beta and rho comparisons, raw cumulative gradient norms, independently evaluated Inception Scores, seeds and uncertainty, and a negative control.",
   "blocked_contract": "May be emitted only after three materially different verification routes and a fourth assumption-satisfying falsification route all fail to establish VERIFIED or FALSIFIED.",
-  "current_status": "LOW confidence; route 1 of 4"
+  "current_status": "LOW confidence; all four required routes complete; final status must be BLOCKED unless route 4 finds a valid assumption-satisfying counterexample"
 }

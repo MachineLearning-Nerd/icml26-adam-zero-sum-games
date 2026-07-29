@@ -45,3 +45,22 @@ Synthetic batches are used only for resource calibration. They are not CIFAR
 or STL evidence, and this route cannot verify the scientific claim.
 
 Status before execution: `PENDING`.
+
+## Route 4 — mandatory falsification
+
+Exact interpretation: this is a qualitative empirical tendency across the four
+named GAN settings, not a universal strict ordering for every adjacent
+momentum pair or every seed.
+
+Method: test four candidate counterexamples against every domain assumption and
+the exact tendency quantifier: the beta=-0.5 versus -0.3 IS reversal; the Table
+2 fixed-beta mismatch; the quadratic rho>0.9 reversal; and the synthetic CPU
+profile. An independent checker rejects metadata ambiguity, missing joint
+AvgS/IS evidence, and non-GAN examples as invalid falsifications.
+
+Negative control: the reported beta pair does falsify a deliberately stronger
+universal strict-monotonic claim. This proves the route can recognize a genuine
+contradiction while refusing to substitute that stronger quantifier for the
+paper's wording.
+
+Status before execution: `PENDING`.

@@ -7,3 +7,5 @@
   substitute.
 - Route 3 uses synthetic batches and an explicit reference architecture only
   to calibrate CPU cost. It does not test CIFAR-10, STL-10, or Inception Score.
+- A local nonmonotone pair does not falsify the paper's stated empirical
+  “tendency.” Calling it FALSIFIED would silently strengthen the quantifier.

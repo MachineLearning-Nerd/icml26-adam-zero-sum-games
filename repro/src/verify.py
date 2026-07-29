@@ -22,6 +22,7 @@ import claim4_flatness
 import claim5_source_audit
 import claim5_table_audit
 import claim5_cpu_profile
+import claim5_falsification
 import claim6_local_error
 
 
@@ -195,11 +196,28 @@ def main() -> int:
         if claim5_route3_checker_path.exists()
         else {"passed": False}
     )
+    claim5_route4 = claim5_falsification.run(OUTPUT)
+    claim5_route4_checker_path = OUTPUT / "claim5_route4_checker.json"
+    claim5_route4_checker = subprocess.run(
+        [
+            sys.executable,
+            str(Path(__file__).with_name("check_claim5_route4.py")),
+            str(OUTPUT / "claim5_route4_falsification.json"),
+            str(claim5_route4_checker_path),
+        ],
+        check=False,
+    )
+    claim5_route4_checker_payload = (
+        json.loads(claim5_route4_checker_path.read_text())
+        if claim5_route4_checker_path.exists()
+        else {"passed": False}
+    )
     claims.append(
         {
             "claim": 5,
-            "status": "BLOCKED",
-            "completed_routes": 3,
+            "status": claim5_route4["verdict"],
+            "confidence": "LOW",
+            "completed_routes": 4,
             "source_uniquely_executable": claim5["author_source_uniquely_executable"],
             "missing_critical_field_count": claim5["missing_critical_field_count"],
             "reported_table_association_direction_supported": (
@@ -216,6 +234,8 @@ def main() -> int:
             "cpu_profile_projected_hours_three_seeds": claim5_route3[
                 "projected_hours_three_seeds_44_configs"
             ],
+            "falsification_established": claim5_route4["falsification_established"],
+            "unblockers": claim5_route4["unblockers"],
         }
     )
     claim6 = claim6_local_error.run(OUTPUT)
@@ -272,6 +292,8 @@ def main() -> int:
     print(json.dumps(claim5_route2, indent=2))
     print("=== CLAIM 5 ROUTE 3 CPU PROFILE ===")
     print(json.dumps(claim5_route3, indent=2))
+    print("=== CLAIM 5 ROUTE 4 FALSIFICATION ===")
+    print(json.dumps(claim5_route4, indent=2))
     if (
         not accepted_pass
         or claim4_status != "VERIFIED"
@@ -281,6 +303,8 @@ def main() -> int:
         or not claim5_route2_checker_payload["passed"]
         or claim5_route3_checker.returncode != 0
         or not claim5_route3_checker_payload["passed"]
+        or claim5_route4_checker.returncode != 0
+        or not claim5_route4_checker_payload["passed"]
         or claim6_status != "VERIFIED"
     ):
         print("ERROR: cumulative claim verification failed", file=sys.stderr)
