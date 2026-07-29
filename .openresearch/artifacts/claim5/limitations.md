@@ -5,3 +5,5 @@
   evidence.
 - No missing implementation choice is silently filled with a convenient
   substitute.
+- Route 3 uses synthetic batches and an explicit reference architecture only
+  to calibrate CPU cost. It does not test CIFAR-10, STL-10, or Inception Score.

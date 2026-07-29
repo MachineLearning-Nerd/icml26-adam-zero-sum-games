@@ -28,3 +28,20 @@ Status before execution: `PENDING`.
 
 Author-reported values remain author evidence. Even a consistent table cannot
 be promoted to reproduction evidence.
+
+## Route 3 — full-shape CPU feasibility calibration
+
+Interpretation: a faithful verification requires the reported batch size,
+image resolutions, architecture families, WGAN-GP backward pass, parameter
+gradient statistic, 16,000-step horizon visible in the published plots, and 44
+momentum/setting combinations.
+
+Method: profile batch-64 CNN and ResNet WGAN-GP joint updates at 32×32 and
+64×64 on HF cpu-upgrade, including the parameter-gradient L1 statistic.
+Forward-only evaluation is the negative control. Independently project the
+lower-bound one- and three-seed campaign time.
+
+Synthetic batches are used only for resource calibration. They are not CIFAR
+or STL evidence, and this route cannot verify the scientific claim.
+
+Status before execution: `PENDING`.
