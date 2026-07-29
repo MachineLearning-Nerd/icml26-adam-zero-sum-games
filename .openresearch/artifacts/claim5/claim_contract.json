@@ -1,0 +1,14 @@
+{
+  "claim": 5,
+  "paper_statement": "Across ResNet and CNN WGAN training on CIFAR-10 and STL-10, smaller beta and larger rho reduce cumulative average parameter-gradient L1 norms, and lower norms tend to coincide with higher Inception Scores.",
+  "source_scope": {
+    "datasets": ["CIFAR-10", "STL-10"],
+    "architectures": ["ResNet", "CNN"],
+    "learning_rate": 0.0002,
+    "batch_size": 64,
+    "metric": "cumulative AvgS and Inception Score"
+  },
+  "verified_contract": "Requires actual training of both named architectures on both named datasets, both beta and rho comparisons, raw cumulative gradient norms, independently evaluated Inception Scores, seeds and uncertainty, and a negative control.",
+  "blocked_contract": "May be emitted only after three materially different verification routes and a fourth assumption-satisfying falsification route all fail to establish VERIFIED or FALSIFIED.",
+  "current_status": "LOW confidence; route 1 of 4"
+}

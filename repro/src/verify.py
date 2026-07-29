@@ -19,6 +19,7 @@ import numpy as np
 
 import core as M
 import claim4_flatness
+import claim5_source_audit
 import claim6_local_error
 
 
@@ -144,8 +145,30 @@ def main() -> int:
             ),
         }
     )
+    claim5 = claim5_source_audit.run(OUTPUT)
+    claim5_checker_path = OUTPUT / "claim5_route1_checker.json"
+    claim5_checker = subprocess.run(
+        [
+            sys.executable,
+            str(Path(__file__).with_name("check_claim5_route1.py")),
+            str(OUTPUT / "claim5_route1_source_audit.json"),
+            str(claim5_checker_path),
+        ],
+        check=False,
+    )
+    claim5_checker_payload = (
+        json.loads(claim5_checker_path.read_text())
+        if claim5_checker_path.exists()
+        else {"passed": False}
+    )
     claims.append(
-        {"claim": 5, "status": "BLOCKED", "reason": "No faithful GAN training evidence yet."}
+        {
+            "claim": 5,
+            "status": "BLOCKED",
+            "completed_routes": 1,
+            "source_uniquely_executable": claim5["author_source_uniquely_executable"],
+            "missing_critical_field_count": claim5["missing_critical_field_count"],
+        }
     )
     claim6 = claim6_local_error.run(OUTPUT)
     checker_path = OUTPUT / "claim6_checker.json"
@@ -195,7 +218,15 @@ def main() -> int:
     print(json.dumps(claim6, indent=2))
     print("=== CLAIM 4 RAW FLATNESS EVIDENCE ===")
     print(json.dumps(claim4, indent=2))
-    if not accepted_pass or claim4_status != "VERIFIED" or claim6_status != "VERIFIED":
+    print("=== CLAIM 5 ROUTE 1 SOURCE AUDIT ===")
+    print(json.dumps(claim5, indent=2))
+    if (
+        not accepted_pass
+        or claim4_status != "VERIFIED"
+        or claim5_checker.returncode != 0
+        or not claim5_checker_payload["passed"]
+        or claim6_status != "VERIFIED"
+    ):
         print("ERROR: cumulative claim verification failed", file=sys.stderr)
         return 1
     return 0
