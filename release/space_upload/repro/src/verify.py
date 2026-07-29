@@ -11,6 +11,7 @@ import hashlib
 import json
 import os
 import platform
+import re
 import subprocess
 import sys
 import time
@@ -336,6 +337,13 @@ def main() -> int:
     marimo_check = subprocess.run(
         ["marimo", "check", str(ROOT / "notebooks" / "adam_zero_sum_reproduction.py")],
         check=False,
+        capture_output=True,
+        text=True,
+    )
+    marimo_output = marimo_check.stdout + marimo_check.stderr
+    print(marimo_output, end="" if marimo_output.endswith("\n") else "\n")
+    marimo_warning_free = "warning[" not in marimo_output and not re.search(
+        r"Found [1-9][0-9]* issues", marimo_output
     )
     release_checker_path = OUTPUT / "release_checker.json"
     release_source_present = (ROOT / "release" / "space_upload").is_dir()
@@ -380,6 +388,7 @@ def main() -> int:
         or claims123_checker.returncode != 0
         or not claims123_checker_payload["passed"]
         or marimo_check.returncode != 0
+        or not marimo_warning_free
         or release_checker_returncode != 0
         or not release_checker_payload["passed"]
         or claim4_status != "VERIFIED"
