@@ -1,0 +1,127 @@
+"""Frozen reconstruction of the three checks accepted by the live judge.
+
+This baseline intentionally leaves Claims 4--6 BLOCKED. Children must retain
+these regression checks and replace the blocked entries only with direct,
+claim-specific evidence.
+"""
+
+from __future__ import annotations
+
+import json
+import platform
+import sys
+import time
+from pathlib import Path
+
+import numpy as np
+
+import core as M
+
+
+ROOT = Path(__file__).resolve().parents[2]
+OUTPUT = ROOT / "outputs"
+GAME = M.make_game(a=1.0, b=1.0, c=3.0)
+EPS = 0.05
+
+
+def max_stable_h(beta: float, rho: float = 0.9, steps: int = 1500) -> float:
+    lo, hi = 1e-4, 2.0
+    for _ in range(14):
+        mid = (lo + hi) / 2.0
+        if M.converges(GAME, beta, rho, EPS, mid, T=steps):
+            lo = mid
+        else:
+            hi = mid
+    return lo
+
+
+def accepted_regressions() -> list[dict[str, object]]:
+    betas = [-0.3, 0.0, 0.3, 0.6, 0.9]
+    stable = [max_stable_h(beta) for beta in betas]
+    c1 = all(stable[i] > stable[i + 1] for i in range(len(stable) - 1))
+
+    monotone_betas = np.linspace(-0.49, 0.9, 8)
+    continuous = [M.bound_continuous(GAME, float(beta), 1.0) for beta in monotone_betas]
+    discrete = [M.bound_discrete(GAME, float(beta), 1.0) for beta in monotone_betas]
+    c2 = all(continuous[i] > continuous[i + 1] for i in range(7)) and all(
+        discrete[i] > discrete[i + 1] for i in range(7)
+    )
+
+    bilinear = M.make_game(a=0.0, b=0.0, c=1.0)
+    any_converged = any(
+        M.converges(bilinear, beta, rho, EPS, h, T=1000)
+        for beta in (-0.5, 0.0, 0.5, 0.9)
+        for rho in (0.5, 0.9, 0.99)
+        for h in (0.001, 0.01, 0.1)
+    )
+    c3 = M.bound_discrete(bilinear, 0.0, EPS) == 0.0 and not any_converged
+
+    return [
+        {
+            "claim": 1,
+            "status": "VERIFIED" if c1 else "FAILED",
+            "beta": betas,
+            "max_stable_h": stable,
+            "strictly_decreasing": c1,
+        },
+        {
+            "claim": 2,
+            "status": "VERIFIED" if c2 else "FAILED",
+            "beta": monotone_betas.tolist(),
+            "continuous_bound": continuous,
+            "discrete_bound": discrete,
+            "strictly_decreasing": c2,
+            "source_scope_note": "Discrete monotonicity is checked inside Corollary 4.5's beta domain.",
+        },
+        {
+            "claim": 3,
+            "status": "VERIFIED" if c3 else "FAILED",
+            "eigenvalues_real": np.asarray(bilinear["lam"]).real.tolist(),
+            "bound_discrete": M.bound_discrete(bilinear, 0.0, EPS),
+            "any_converged": any_converged,
+        },
+    ]
+
+
+def main() -> int:
+    started = time.perf_counter()
+    claims = accepted_regressions()
+    claims.extend(
+        {
+            "claim": claim,
+            "status": "BLOCKED",
+            "reason": reason,
+        }
+        for claim, reason in (
+            (4, "Historical baseline varies beta but not rho."),
+            (5, "Historical baseline contains no GAN training evidence."),
+            (6, "Historical baseline tests stability-bound agreement, not one-step O(h^3) local error."),
+        )
+    )
+    accepted_pass = all(item["status"] == "VERIFIED" for item in claims[:3])
+    payload = {
+        "paper": "2605.19392",
+        "openreview": "4MVVscCjYu",
+        "baseline_judge_score": "6/12",
+        "historical_space_revision": "2e0e908df273cf1cbba8a5455926f06d5f411808",
+        "claims": claims,
+        "accepted_regressions_pass": accepted_pass,
+        "environment": {
+            "python": sys.version.split()[0],
+            "platform": platform.platform(),
+            "numpy": np.__version__,
+        },
+        "runtime_seconds": time.perf_counter() - started,
+    }
+    OUTPUT.mkdir(exist_ok=True)
+    (OUTPUT / "baseline_verdict.json").write_text(json.dumps(payload, indent=2) + "\n")
+    print("=== FROZEN BASELINE EVIDENCE ===")
+    print(json.dumps(payload, indent=2))
+    if not accepted_pass:
+        print("ERROR: a previously accepted claim regressed", file=sys.stderr)
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
