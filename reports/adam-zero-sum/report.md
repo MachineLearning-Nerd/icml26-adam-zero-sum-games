@@ -128,7 +128,7 @@ Raw CSV/JSON is in `raw/` beside this report. The evidence-producing commit is
 `cpu-upgrade`, actual 8-vCPU quota, 1m30s wall time and 26.288s verifier time.
 
 Important lineage:
-[baseline](https://github.com/MachineLearning-Nerd/icml26-repro-4MVVscCjYu-understanding-dynamics-of-adam-in-zero-sum-games-an-ode-approach/tree/orx/judged-6-of-12-baseline-reconstruction),
-[Claim 4](https://github.com/MachineLearning-Nerd/icml26-repro-4MVVscCjYu-understanding-dynamics-of-adam-in-zero-sum-games-an-ode-approach/tree/orx/claim-4-published-rho-grid-replication),
-[Claim 6](https://github.com/MachineLearning-Nerd/icml26-repro-4MVVscCjYu-understanding-dynamics-of-adam-in-zero-sum-games-an-ode-approach/tree/orx/claim-6-fixed-time-aligned-local-error), and
-[cumulative evidence](https://github.com/MachineLearning-Nerd/icml26-repro-4MVVscCjYu-understanding-dynamics-of-adam-in-zero-sum-games-an-ode-approach/tree/orx/cumulative-evaluator-visible-release-candidate).
+[baseline](https://github.com/MachineLearning-Nerd/icml26-adam-zero-sum-games/tree/historical/judged-baseline),
+[Claim 4](https://github.com/MachineLearning-Nerd/icml26-adam-zero-sum-games/tree/audit/c4-published-rho-grid),
+[Claim 6](https://github.com/MachineLearning-Nerd/icml26-adam-zero-sum-games/tree/audit/c6-fixed-time-local-error), and
+[cumulative evidence](https://github.com/MachineLearning-Nerd/icml26-adam-zero-sum-games/tree/release/cumulative-evidence).
