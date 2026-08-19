@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "paper": {
+    "title": "Understanding Dynamics of Adam in Zero-Sum Games: An ODE Approach",
+    "arxiv": "2605.19392",
+    "submission": "4MVVscCjYu",
+    "authors": ["Yi Feng", "Weiming Ou", "Xiao Wang"],
+    "html_sha256": "c7ebf813dc871eba1c0c93542fcf0a7d599c7c4d44a543a0000270ce48ae7998",
+    "tex_sha256": "9922a66ab5708f357aa8be09f207565791a6488f48b0d8d2cf27011964521265"
+  },
+  "overall_status": "PARTIAL_C1_C2_C3_C4_C6_VERIFIED_C5_BLOCKED_HISTORICAL_SCORE_6_OF_12_NO_CURRENT_SCORE",
+  "claims": [
+    {
+      "id": "C1",
+      "name": "reverse_beta_stability",
+      "status": "VERIFIED_SCOPED",
+      "paper_anchor": "Theorems 4.3-4.4",
+      "production": ["repro/src/core.py", "repro/src/check_claims123.py", "reports/adam-zero-sum/raw/baseline_verdict.json"],
+      "controls": ["reversed boundary order is rejected"],
+      "scope": "Quadratic interaction-dominated game with Jacobian eigenvalues -1 +/- 3i.",
+      "metrics": {"beta_values": [-0.3, 0.0, 0.3, 0.6, 0.9], "max_stable_h": [0.07712251586914062, 0.05209935302734375, 0.03061605224609375, 0.014869769287109376, 0.002907476806640625]}
+    },
+    {
+      "id": "C2",
+      "name": "decreasing_stability_bounds",
+      "status": "VERIFIED_SCOPED",
+      "paper_anchor": "Corollary 4.5",
+      "production": ["repro/src/verify.py", "repro/src/check_claims123.py", "reports/adam-zero-sum/raw/baseline_verdict.json"],
+      "controls": ["constant bound array is rejected"],
+      "scope": "Finite eight-point interior beta grid for both source bound forms.",
+      "metrics": {"continuous_strictly_decreasing": true, "discrete_strictly_decreasing": true}
+    },
+    {
+      "id": "C3",
+      "name": "bilinear_zero_bound",
+      "status": "VERIFIED_SCOPED",
+      "paper_anchor": "Corollary 4.6",
+      "production": ["repro/src/check_claims123.py", "reports/adam-zero-sum/raw/baseline_verdict.json"],
+      "controls": ["perturbed positive-real-part spectrum is rejected"],
+      "scope": "Bilinear zero-sum game certificate and 36 finite beta/rho/h configurations.",
+      "metrics": {"discrete_bound": 0.0, "any_converged": false, "configuration_count": 36}
+    },
+    {
+      "id": "C4",
+      "name": "beta_rho_flatness_thesis",
+      "status": "VERIFIED_SCOPED",
+      "paper_anchor": "Section 5 and AvgS definition",
+      "production": ["repro/src/claim4_flatness.py", "repro/src/check_claim4.py", "reports/adam-zero-sum/raw/claim4_flatness.csv"],
+      "controls": ["interaction-free game reverses both expected orders", "paired 99% bootstrap intervals"],
+      "scope": "Published beta/rho grid, eight paired starts, horizons 3000 and 10000.",
+      "metrics": {"horizon_10000_beta_mean_range": [0.5598974171942623, 0.5997927391058924], "horizon_10000_rho_mean_range": [0.0288614564446796, 0.022374059385958024], "row_count": 432}
+    },
+    {
+      "id": "C5",
+      "name": "gan_avgs_inception_tendency",
+      "status": "BLOCKED_PROTOCOL",
+      "paper_anchor": "Section 5 ResNet/CNN improved-WGAN experiments",
+      "production": ["repro/src/claim5_source_audit.py", "repro/src/claim5_table_audit.py", "repro/src/claim5_cpu_profile.py", "repro/src/claim5_falsification.py"],
+      "controls": ["four route checkers", "stronger universal claim is falsified", "valid exact-claim counterexample absent"],
+      "scope": "No paper-level GAN reproduction or falsification is claimed.",
+      "metrics": {"completed_routes": 4, "missing_critical_field_count": 13, "cpu_profile_projected_hours_three_seeds": 337.3030072745556, "falsification_established": false}
+    },
+    {
+      "id": "C6",
+      "name": "corrected_ode_local_error",
+      "status": "VERIFIED_SCOPED",
+      "paper_anchor": "Theorem 3.1 and Appendix C.1",
+      "production": ["repro/src/claim6_local_error.py", "repro/src/check_claim6.py", "reports/adam-zero-sum/raw/claim6_local_error.csv"],
+      "controls": ["SignGDA O(h^2) control rejected as O(h^3)", "burn-in threshold", "fixed physical time"],
+      "scope": "Smooth finite trigonometric game, four initial states, eight step sizes.",
+      "metrics": {"corrected_order_mean": 2.9960792990938225, "corrected_order_min": 2.9830549280732708, "corrected_order_max": 3.0091036701143734, "signgda_control_order_mean": 1.9955871673075238}
+    }
+  ]
+}

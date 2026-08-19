@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "paper": "Understanding Dynamics of Adam in Zero-Sum Games: An ODE Approach",
+  "arxiv": "2605.19392",
+  "submission": "4MVVscCjYu",
+  "phase": "standardized_claim_audit_publication",
+  "overall_status": "PARTIAL_C1_C2_C3_C4_C6_VERIFIED_C5_BLOCKED_HISTORICAL_SCORE_6_OF_12_NO_CURRENT_SCORE",
+  "next_action": "Retain Claims 1-4 and 6 as scoped evidence; obtain a uniquely specified, resource-feasible GAN protocol before changing Claim 5.",
+  "current_score_claim": false,
+  "publication_allowed": false,
+  "author_endorsement_claimed": false,
+  "claim_statuses": {
+    "C1": "VERIFIED_SCOPED",
+    "C2": "VERIFIED_SCOPED",
+    "C3": "VERIFIED_SCOPED",
+    "C4": "VERIFIED_SCOPED",
+    "C5": "BLOCKED_PROTOCOL",
+    "C6": "VERIFIED_SCOPED"
+  },
+  "source": {
+    "html_sha256": "c7ebf813dc871eba1c0c93542fcf0a7d599c7c4d44a543a0000270ce48ae7998",
+    "tex_sha256": "9922a66ab5708f357aa8be09f207565791a6488f48b0d8d2cf27011964521265"
+  },
+  "repository": {
+    "owner": "MachineLearning-Nerd",
+    "canonical_email": "MachineLearning-Nerd@users.noreply.github.com",
+    "github": "https://github.com/MachineLearning-Nerd/icml26-adam-zero-sum-games",
+    "branches": 13,
+    "pre_publication_reachable_commits": 28,
+    "recovery_bundle_sha256": "3affb8220c1f9cbc1065c0f85639559c93136adfb466e3c9180ccd0f30f070b9"
+  },
+  "historical_external_result": {
+    "live_judge_score": "6/12",
+    "current_score_claim": false,
+    "candidate_space": "DineshAI/4MVVscCjYu",
+    "forecast": "8-10/12"
+  }
+}

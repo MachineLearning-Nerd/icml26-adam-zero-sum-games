@@ -4,6 +4,16 @@ Independent reproduction audit for [“Understanding Dynamics of Adam in Zero-Su
 
 The repository is published as [`icml26-adam-zero-sum-games`](https://github.com/MachineLearning-Nerd/icml26-adam-zero-sum-games).
 
+> **Audit status:** `PARTIAL_C1_C2_C3_C4_C6_VERIFIED_C5_BLOCKED_HISTORICAL_SCORE_6_OF_12_NO_CURRENT_SCORE`
+>
+> Claims 1–4 and 6 are verified within explicit finite or assumption-scoped
+> numerical contracts. Claim 5 remains blocked because the source does not
+> uniquely specify the GAN experiment, its reported table has a fixed-beta
+> inconsistency, and the calibrated faithful campaign exceeds the available
+> CPU window. The historical judge score is 6/12; the 8–10 estimate is only a
+> forecast. See [`STATUS.md`](STATUS.md), [`CLAIM_EVIDENCE.md`](CLAIM_EVIDENCE.md),
+> and [`REPORT.md`](REPORT.md).
+
 ## What the paper does
 
 The paper derives ordinary differential equations that approximate the discrete Adam descent-ascent (Adam-DA) method used in zero-sum games. It uses the ODE view to study two questions:
@@ -59,6 +69,12 @@ uv run --locked marimo run notebooks/adam_zero_sum_reproduction.py
 | [`notebooks/`](notebooks/) | Reproducible marimo tutorial |
 | [`pyproject.toml`](pyproject.toml) / [`uv.lock`](uv.lock) | Pinned runtime and dependency definition |
 
+The machine-readable claim ledger is [`claims.json`](claims.json), the
+production-path manifest is [`EVIDENCE_MANIFEST.json`](EVIDENCE_MANIFEST.json),
+and [`verify_final.py`](verify_final.py) checks the published documentation,
+source pin, branch set, score boundary, and attribution without launching the
+scientific suite.
+
 ## Branch organization
 
 The original branches were generated under `orx/*`. They are being renamed to make each evidence route self-describing. The complete old-to-new mapping and provenance policy are in [`branch-audit.md`](branch-audit.md).
@@ -89,6 +105,10 @@ Branch names describe the experiment or release surface; they do not imply that 
 - **Source version audited here:** arXiv v1, retrieved and hashed in the claim source-audit files
 - **Current collection:** ICML 2026 reproduction audit
 
+The source/version record is [`SOURCE_AUDIT.md`](SOURCE_AUDIT.md), the
+repository citation is [`CITATION.cff`](CITATION.cff), and the author
+thank-you note is [`AUTHOR_THANK_YOU.md`](AUTHOR_THANK_YOU.md).
+
 ### Citation
 
 ```bibtex
@@ -108,4 +128,4 @@ Thank you to Yi Feng, Weiming Ou, and Xiao Wang for developing the ODE analysis 
 
 ## Maintenance attribution
 
-Repository documentation, branch naming, audit notes, and maintenance commits in this collection are attributed to **MachineLearning-Nerd**. Scientific authorship and ownership of the paper’s ideas remain with the paper authors.
+Repository documentation, branch naming, audit notes, and maintenance commits in this collection are attributed to **MachineLearning-Nerd** with canonical identity `MachineLearning-Nerd <MachineLearning-Nerd@users.noreply.github.com>`. Scientific authorship and ownership of the paper’s ideas remain with the paper authors.

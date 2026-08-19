@@ -1,8 +1,8 @@
 # Claim 6 evaluation
 
-Status before execution: `PENDING`.
+Current verdict: `VERIFIED_SCOPED`.
 
-The verifier exits nonzero unless:
+The accepted raw result and independent checker pass unless:
 
 1. all previously accepted Claims 1--3 pass;
 2. every corrected-ODE slope lies in `[2.70, 3.30]`;

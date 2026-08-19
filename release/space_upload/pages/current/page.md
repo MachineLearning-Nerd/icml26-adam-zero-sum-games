@@ -7,6 +7,11 @@ supersedes the old inline verifier at judged Space revision
 unchanged, and is labeled **[Historical rejected baseline](../overview/page.md)**.
 The historical [index page](../index.md) is also preserved.
 
+> **Audit status:** Claims 1–4 and 6 are `VERIFIED_SCOPED`; Claim 5 is
+> `BLOCKED_PROTOCOL`. The historical judge score is `6/12`; the current
+> candidate has no judge score claim, no publication claim, and no author
+> endorsement claim.
+
 **Fixed command**
 
 ```bash

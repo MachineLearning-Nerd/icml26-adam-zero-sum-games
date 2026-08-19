@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this audit, cite both this repository and the original paper."
+type: software
+title: "Independent audit of Adam dynamics in zero-sum games"
+version: "1.0.0"
+date-released: 2026-08-19
+authors:
+  - name: MachineLearning-Nerd
+repository-code: "https://github.com/MachineLearning-Nerd/icml26-adam-zero-sum-games"
+url: "https://github.com/MachineLearning-Nerd/icml26-adam-zero-sum-games"
+abstract: "Scoped numerical audit of Adam-DA stability, momentum-dependent flatness, GAN reproducibility boundaries, and corrected ODE local error."
+keywords:
+  - Adam
+  - zero-sum games
+  - ordinary differential equations
+  - optimization dynamics
+  - reproducibility
+preferred-citation:
+  type: article
+  title: "Understanding Dynamics of Adam in Zero-Sum Games: An ODE Approach"
+  authors:
+    - family-names: Feng
+      given-names: Yi
+    - family-names: Ou
+      given-names: Weiming
+    - family-names: Wang
+      given-names: Xiao
+  year: 2026
+  url: "https://arxiv.org/abs/2605.19392"
